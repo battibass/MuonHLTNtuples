@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ "$#" = "1" ]; then
+  file=$1
+else
+  echo "Usage: countEntries [root_file]"
+  exit
+fi
+
+mkdir -p /tmp/$LOGNAME
+
+cat <<EOF >| /tmp/$LOGNAME/countEntries_tmp.C
+{
+      gSystem->Load("$PWD/libMuTree.so");
+      hfile = TFile::Open("${file}","READONLY");
+      TTree* muTree = (TTree*)hfile->Get("MuTree/MUTREE");
+      if (!muTree) muTree = (TTree*)hfile->Get("MUTREE");
+      printf("Entries in tree: %d\n", muTree->GetEntriesFast());
+}
+EOF
+
+root.exe -b -q /tmp/$LOGNAME/countEntries_tmp.C

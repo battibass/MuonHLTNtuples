@@ -1,0 +1,17 @@
+Examples of analysis codes:
+====================
+Raw analysis:
+      analysis_example -> runs analysis_example.C code
+More sophisticated analysis, using the class MyAnalysis:
+      analysis_example2 -> runs analysis_example2.C code
+
+Skimming events:
+===============
+skim_example -> runs skim_example.C code
+
+Other utilities:
+===============
+create_libMuTree -> creates the shared library (useful to avoid undefined classes when running borseMuTree and countEntries)
+browseMuTree -> browse Ciemat root trees
+countEntries -> just count the entries in a given root muTree
+MyAnalysis.C, MyAnalysis.h, tdrstyle.C -> Codes to employ the MyAnalysis class (useful for histograms)
