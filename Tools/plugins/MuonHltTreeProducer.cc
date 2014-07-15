@@ -5,15 +5,13 @@
 #include "FWCore/Framework/interface/Event.h" 
 #include "FWCore/Framework/interface/EventSetup.h"
 
-#include "CMSSWCiemat/Top2012/src/MuTree.h"
+#include "MuonHLTNtuples/Tools/src/MuTree.h"
 #include "TTree.h"
 
 #include "DataFormats/PatCandidates/interface/Conversion.h"
 #include "DataFormats/RecoCandidate/interface/IsoDeposit.h"
 
 #include "DataFormats/MuonReco/interface/MuonSelectors.h"
-
-#include "CMSSWCiemat/Top2012/src/Utils.h"
 
 #include "FWCore/ServiceRegistry/interface/Service.h"
 

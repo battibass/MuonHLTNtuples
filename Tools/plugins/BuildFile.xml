@@ -13,8 +13,8 @@
 <use name="AnalysisDataFormats/TopObjects"/>
 <use name="RecoEgamma/EgammaTools"/>
 
-<library name="CMSSWCiematTop2012Plugin" file="*.cc">
-   <use name="CMSSWCiemat/Top2012"/>
+<library name="MuonHLTNtuplesToolsPlugin" file="*.cc">
+   <use name="MuonHLTNtuples/Tools"/>
    <use name="root"/>
    <use name="rootminuit"/>
    <use name="clhep"/>

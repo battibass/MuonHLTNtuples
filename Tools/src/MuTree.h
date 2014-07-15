@@ -1,5 +1,5 @@
-#ifndef CMSSWCiemat_MuTree_H
-#define CMSSWCiemat_MuTree_H
+#ifndef MuonHLT_Tools_MuonHltTree_H
+#define MuonHLT_Tools_MuonHltTree_H
 
 #include "TROOT.h"
 #include "TMath.h"

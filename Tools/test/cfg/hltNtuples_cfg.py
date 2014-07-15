@@ -19,7 +19,7 @@ process.load("Configuration.Geometry.GeometryIdeal_cff")
 process.load("Geometry.CommonDetUnit.globalTrackingGeometry_cfi")
 process.load("RecoMuon.DetLayers.muonDetLayerGeometry_cfi")
 
-from CMSSWCiemat.Top2012.MuonHltNtuples_cff import appendMuonHltNtuple
+from MuonHLTNtuples.Tools.MuonHltNtuples_cff import appendMuonHltNtuple
 
 appendMuonHltNtuple(process,True,"test.root")
 

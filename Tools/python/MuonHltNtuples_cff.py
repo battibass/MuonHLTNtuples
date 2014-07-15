@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 
 def appendMuonHltNtuple(process, runOnMC, processTag="HLT", ntupleFileName="MuonHltTree.root") :
 
-    process.load("CMSSWCiemat.Top2012.MuonHltTreeProducer_cfi")
+    process.load("MuonHLTNtuples.Tools.MuonHltTreeProducer_cfi")
 
     process.MuonHltTree.PileUpInfoTag = "none" # CB hack for now
 
@@ -13,7 +13,7 @@ def appendMuonHltNtuple(process, runOnMC, processTag="HLT", ntupleFileName="Muon
         process.MuonHltTree.TrigSummaryTag = "hltTriggerSummaryAOD::"+processTag
 
     if runOnMC :
-        process.load("CMSSWCiemat.Top2012.PrunedGenParticles_cfi")
+        process.load("MuonHLTNtuples.Tools.PrunedGenParticles_cfi")
         process.muonHltNtuple = cms.Sequence(process.prunedGenParticles + process.MuonHltTree)
     else :
         process.muonHltNtuple = cms.Sequence(process.MuonHltTree)
