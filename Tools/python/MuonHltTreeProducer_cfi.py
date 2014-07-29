@@ -8,7 +8,7 @@ MuonHltTree = cms.EDAnalyzer("MuonHltTreeProducer",
                              PrimaryVertexTag = cms.untracked.InputTag("offlinePrimaryVertices"),
                              BeamSpotTag      = cms.untracked.InputTag("offlineBeamSpot"),
                              
-                             GenTag = cms.untracked.InputTag("genParticles"), #CB do we need pruned?
+                             GenTag = cms.untracked.InputTag("prunedGenParticles"), # pruned
                              PileUpInfoTag = cms.untracked.InputTag("pileupInfo")
                              )
 
