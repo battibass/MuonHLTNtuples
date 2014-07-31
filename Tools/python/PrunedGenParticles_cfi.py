@@ -6,5 +6,7 @@ prunedGenParticles = cms.EDProducer("GenParticlePruner",
                                                          , "keep status = 3"
                                                          , "++keep pdgId=11 & pt>10 & abs(eta)<3"
                                                          , "++keep pdgId=13 & pt>10 & abs(eta)<3"
+                                                         , "++keep pdgId=-11 & pt>10 & abs(eta)<3"
+                                                         , "++keep pdgId=-13 & pt>10 & abs(eta)<3"
                                                          )
                                     )
