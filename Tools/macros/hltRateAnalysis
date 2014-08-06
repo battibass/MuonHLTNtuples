@@ -1,0 +1,31 @@
+#!/bin/sh
+
+file=$0
+fileC=${file}.C
+fileEXE=${file}.exe
+
+BASE_FILE_DIR="/data1/battilan/MuonHLT/RobertoRateChecks/"
+
+ROOTLIBS="-L/usr/lib64 `$ROOTSYS/bin/root-config --glibs` -lMathCore -lMinuit"
+ROOTINCDIR=`$ROOTSYS/bin/root-config --incdir`
+
+rootcint -f MuTreeDict.C -c MuTree.h MuTreeLinkDef.h
+
+g++ -I${ROOTINCDIR} ${fileC} MuTreeDict.C ${ROOTLIBS} -lX11 -o ${fileEXE}
+
+echo "$1"
+
+if [ $1=="ALL" ]
+then
+    echo "Running ALL filtering using $2"
+    for INPUT_FILE in `ls $BASE_FILE_DIR | grep $2 | grep root` 
+    do
+	${fileEXE} $BASE_FILE_DIR/$INPUT_FILE
+    done
+else
+    echo "Running just sample $1"
+    ${fileEXE} $@
+fi
+
+rm -f MuTreeDict.C MuTreeDict.h
+rm -f ${fileEXE}
