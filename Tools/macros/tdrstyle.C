@@ -56,14 +56,14 @@ void setTDRStyle() {
 
   tdrStyle->SetEndErrorSize(2);
   // tdrStyle->SetErrorMarker(20);
-  tdrStyle->SetErrorX(0.);
+  // tdrStyle->SetErrorX(0.); CB commented out I want the line in X when dawing with P
   
   tdrStyle->SetMarkerStyle(20);
 
 //For the fit/function:
-  tdrStyle->SetOptFit(1);
+  tdrStyle->SetOptFit(0);
   tdrStyle->SetFitFormat("5.4g");
-  tdrStyle->SetFuncColor(2);
+  // tdrStyle->SetFuncColor(2);
   tdrStyle->SetFuncStyle(1);
   tdrStyle->SetFuncWidth(1);
 
@@ -89,8 +89,8 @@ void setTDRStyle() {
 
 // Margins:
   tdrStyle->SetPadTopMargin(0.05);
-  tdrStyle->SetPadBottomMargin(0.13);
-  tdrStyle->SetPadLeftMargin(0.16);
+  tdrStyle->SetPadBottomMargin(0.05);
+  tdrStyle->SetPadLeftMargin(0.14);
   tdrStyle->SetPadRightMargin(0.02);
 
 // For the Global title:
@@ -123,8 +123,9 @@ void setTDRStyle() {
 
   tdrStyle->SetLabelColor(1, "XYZ");
   tdrStyle->SetLabelFont(42, "XYZ");
-  tdrStyle->SetLabelOffset(0.007, "XYZ");
-  tdrStyle->SetLabelSize(0.05, "XYZ");
+  tdrStyle->SetLabelOffset(0.007, "X");
+  tdrStyle->SetLabelOffset(0.005, "YZ");
+  tdrStyle->SetLabelSize(0.04, "XYZ");
 
 // For the axis:
 
