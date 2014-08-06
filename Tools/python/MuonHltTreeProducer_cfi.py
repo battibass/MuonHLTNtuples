@@ -9,7 +9,7 @@ MuonHltTree = cms.EDAnalyzer("MuonHltTreeProducer",
                              BeamSpotTag      = cms.untracked.InputTag("offlineBeamSpot"),
                              
                              GenTag = cms.untracked.InputTag("prunedGenParticles"), # pruned
-                             PileUpInfoTag = cms.untracked.InputTag("pileupInfo")
+                             PileUpInfoTag = cms.untracked.InputTag("addPileupInfo")
                              )
 
 

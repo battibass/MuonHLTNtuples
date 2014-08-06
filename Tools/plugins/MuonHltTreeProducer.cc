@@ -133,7 +133,8 @@ void MuonHltTreeProducer::analyze (const edm::Event & ev, const edm::EventSetup 
   ciemat::GenInfo genInfo;
   if (!ev.isRealData()) {
     // Pileup information for MC
-    genInfo.trueNumberOfInteractions = -1.;
+    genInfo.trueNumberOfInteractions   = -1.;
+    genInfo.actualNumberOfInteractions = -1;
     edm::Handle<std::vector< PileupSummaryInfo > >  PupInfo;
     if (pileUpInfoTag_.label() != "none") {
 
@@ -145,7 +146,8 @@ void MuonHltTreeProducer::analyze (const edm::Event & ev, const edm::EventSetup 
 	  int BX = PVI->getBunchCrossing();
       
 	  if(BX == 0) { 
-	    genInfo.trueNumberOfInteractions = PVI->getTrueNumInteractions();
+	    genInfo.trueNumberOfInteractions   = PVI->getTrueNumInteractions();
+	    genInfo.actualNumberOfInteractions = PVI->getPU_NumInteractions();
 	    continue;
 	  }
 	}
@@ -154,6 +156,7 @@ void MuonHltTreeProducer::analyze (const edm::Event & ev, const edm::EventSetup 
 	edm::LogError("") << "[MuonHltTreeProducer]: Pile-Up Info collection does not exist !!!";
       }
     }
+    event_.genInfos.push_back(genInfo);
     
   }
 

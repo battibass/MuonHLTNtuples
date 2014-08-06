@@ -5,8 +5,6 @@ def appendMuonHltNtuple(process, runOnMC, processTag="HLT", ntupleFileName="Muon
 
     process.load("MuonHLTNtuples.Tools.MuonHltTreeProducer_cfi")
 
-    process.MuonHltTree.PileUpInfoTag = "none" # CB hack for now
-
     if processTag != "HLT" :
         print "[MuonHltNtuples]: Customising process tag for TriggerResults / Summary to :", processTag
         process.MuonHltTree.TrigResultsTag = "TriggerResults::"+processTag
