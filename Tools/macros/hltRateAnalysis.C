@@ -10,6 +10,7 @@
 #include "MuTree.h"
 #include "tdrstyle.C"
 
+#include <cstdlib>
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -35,7 +36,7 @@ public:
   void book(TFile* fileOut);
   void fill(ciemat::Event *ev);
 
-  void plotAndSave(float nEntries);
+  void plotAndSave(float scaleFactor);
 
 private:
 
@@ -185,7 +186,7 @@ void RatePlotter::fill(ciemat::Event *ev)
   
 }
 
-void RatePlotter::plotAndSave(float nEntries)
+void RatePlotter::plotAndSave(float scaleFactor)
 {
 
   std::map<std::string, TH1F*>::iterator histoMapIt  =  m_histoMap.begin();
@@ -194,7 +195,7 @@ void RatePlotter::plotAndSave(float nEntries)
   for(; histoMapIt!=histoMapEnd; ++histoMapIt)
     {
       histoMapIt->second->Sumw2();
-      histoMapIt->second->Scale(1./nEntries);
+      histoMapIt->second->Scale(scaleFactor);
     }
 
 }
@@ -202,12 +203,35 @@ void RatePlotter::plotAndSave(float nEntries)
 
 int main(int argc, char* argv[]){
 
+  float xSec      = 1;
+  float filterEff = 1;
+
   if (argc < 2) 
     {
-      std::cout << "Usage : " << argv[0] << " PATH_TO_FILE \n";
+      std::cout << "Usage : " << argv[0] << " PATH_TO_FILE <X_SEC> <FILTER_EFF>\n";
       exit(100);
     }
 
+  if (argc >= 3) 
+    {
+      xSec = std::atof(argv[2]);
+      if (fabs(xSec) < 1E-20)
+	{
+	  std::cout << "atof(<X_SEC>) : " << xSec << " is too small\n";
+	  exit(100);
+	}
+    }
+
+  if (argc >= 4) 
+    {
+      filterEff = std::atof(argv[3]);
+      if (fabs(filterEff) < 1E-20)
+	{
+	  std::cout << "atof(<FILTER_EFF>) : " << filterEff << " is too small\n";
+	  exit(100);
+	}
+    }
+  
   // Input root file
   TString fileName = argv[1]; // "/data1/battilan/MuonHLT/RobertoRateChecks/MuonHltTree_v5_53X_HLT701_25PU_25ns_QCDMu3050.root";
 
@@ -287,12 +311,14 @@ int main(int argc, char* argv[]){
       
     }
 
+  float scaleFactor = 1./nEntries * xSec * filterEff;
+
   plotterIt  = plotters.begin();
   plotterEnd = plotters.end();
-
+  
   for(; plotterIt!=plotterEnd; ++ plotterIt)
     {
-      plotterIt->plotAndSave(nEntries);
+      plotterIt->plotAndSave(scaleFactor);
     }
   
   outputFile->Write();  
