@@ -82,8 +82,8 @@ void RatePlotter::book(TFile* fileOut)
   m_histoMap["hHLTvsEta"] = new TH1F(("hHLTvsEta"+plotterTag).c_str(), ("HLT occupancy vs #eta " + plotterTag +"; #eta; A.U.").c_str(), 12, ETA_BINS);
   m_histoMap["hGENvsEta"] = new TH1F(("hGENvsEta"+plotterTag).c_str(), ("GEN occupancy vs #eta " + plotterTag +"; #eta; A.U.").c_str(), 12, ETA_BINS);
 
-  m_histoMap["hHLTvsPhi"] = new TH1F(("hHLTvsPhi"+plotterTag).c_str(), ("HLT occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 20, -pi, pi);
-  m_histoMap["hGENvsPhi"] = new TH1F(("hGENvsPhi"+plotterTag).c_str(), ("GEN occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 20, -pi, pi);
+  m_histoMap["hHLTvsPhi"] = new TH1F(("hHLTvsPhi"+plotterTag).c_str(), ("HLT occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 10, -pi, pi);
+  m_histoMap["hGENvsPhi"] = new TH1F(("hGENvsPhi"+plotterTag).c_str(), ("GEN occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 10, -pi, pi);
 
   m_histoMap["hHLTvsPt"] = new TH1F(("hHLTvsPt"+plotterTag).c_str(), ("HLT occupancy vs p_{T} " + plotterTag +"; p_{T} GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
   m_histoMap["hGENvsPt"] = new TH1F(("hGENvsPt"+plotterTag).c_str(), ("GEN occupancy vs p_{T} " + plotterTag +"; p_{T} GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
@@ -137,7 +137,7 @@ void RatePlotter::fill(ciemat::Event *ev)
 	  if (bestGenPart->pt >= binPt) m_histoMap["hGENvsPtThr"]-> Fill(binPt);
 	}
 
-      Int_t nInt = ev.genInfos.size() > 0 : ev.genInfos.trueNumberOfInteractions : -1;
+      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).trueNumberOfInteractions : -1;
       m_histoMap["hGENvsInter"]->Fill(nInt);
 
     }
@@ -177,7 +177,7 @@ void RatePlotter::fill(ciemat::Event *ev)
 	  if (bestHLT->pt >= binPt) m_histoMap["hHLTvsPtThr"]-> Fill(binPt);
 	}
 
-      Int_t nInt = ev.genInfos.size() > 0 : ev.genInfos.trueNumberOfInteractions : -1;
+      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).trueNumberOfInteractions : -1;
       m_histoMap["hHLTvsInter"]->Fill(nInt);
 
 
