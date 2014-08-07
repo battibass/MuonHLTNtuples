@@ -15,17 +15,8 @@ g++ -I${ROOTINCDIR} ${fileC} MuTreeDict.C ${ROOTLIBS} -lX11 -o ${fileEXE}
 
 echo "$1"
 
-if [ $1=="ALL" ]
-then
-    echo "Running ALL filtering using $2"
-    for INPUT_FILE in `ls $BASE_FILE_DIR | grep $2 | grep root` 
-    do
-	${fileEXE} $BASE_FILE_DIR/$INPUT_FILE
-    done
-else
-    echo "Running just sample $1"
-    ${fileEXE} $@
-fi
+echo "Running just sample $1"
+${fileEXE} $@
 
 rm -f MuTreeDict.C MuTreeDict.h
 rm -f ${fileEXE}
