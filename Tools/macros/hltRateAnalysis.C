@@ -138,7 +138,7 @@ void RatePlotter::fill(ciemat::Event *ev)
 	  if (bestGenPart->pt >= binPt) m_histoMap["hGENvsPtThr"]-> Fill(binPt);
 	}
 
-      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).trueNumberOfInteractions : -1;
+      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).actualNumberOfInteractions : -1;
       m_histoMap["hGENvsInter"]->Fill(nInt);
 
     }
@@ -178,7 +178,7 @@ void RatePlotter::fill(ciemat::Event *ev)
 	  if (bestHLT->pt >= binPt) m_histoMap["hHLTvsPtThr"]-> Fill(binPt);
 	}
 
-      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).trueNumberOfInteractions : -1;
+      Int_t nInt = ev->genInfos.size() > 0 ? ev->genInfos.at(0).actualNumberOfInteractions : -1;
       m_histoMap["hHLTvsInter"]->Fill(nInt);
 
 
