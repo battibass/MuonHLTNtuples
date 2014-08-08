@@ -80,20 +80,20 @@ void RatePlotter::book(TFile* fileOut)
   Float_t pi = TMath::Pi();
 
   // Declare histograms
-  m_histoMap["hHLTvsEta"] = new TH1F(("hHLTvsEta"+plotterTag).c_str(), ("HLT occupancy vs #eta " + plotterTag +"; #eta; A.U.").c_str(), 12, ETA_BINS);
-  m_histoMap["hGENvsEta"] = new TH1F(("hGENvsEta"+plotterTag).c_str(), ("GEN occupancy vs #eta " + plotterTag +"; #eta; A.U.").c_str(), 12, ETA_BINS);
+  m_histoMap["hHLTvsEta"] = new TH1F(("hHLTvsEta"+plotterTag).c_str(), ("HLT occupancy vs #eta " + plotterTag +";HLT mu #eta;A.U.").c_str(), 12, ETA_BINS);
+  m_histoMap["hGENvsEta"] = new TH1F(("hGENvsEta"+plotterTag).c_str(), ("GEN occupancy vs #eta " + plotterTag +";GEN mu #eta; A.U.").c_str(), 12, ETA_BINS);
 
-  m_histoMap["hHLTvsPhi"] = new TH1F(("hHLTvsPhi"+plotterTag).c_str(), ("HLT occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 10, -pi, pi);
-  m_histoMap["hGENvsPhi"] = new TH1F(("hGENvsPhi"+plotterTag).c_str(), ("GEN occupancy vs #phi " + plotterTag +"; #phi; A.U.").c_str(), 10, -pi, pi);
+  m_histoMap["hHLTvsPhi"] = new TH1F(("hHLTvsPhi"+plotterTag).c_str(), ("HLT occupancy vs #phi " + plotterTag +";HLT mu #phi [rad];A.U.").c_str(), 10, -pi, pi);
+  m_histoMap["hGENvsPhi"] = new TH1F(("hGENvsPhi"+plotterTag).c_str(), ("GEN occupancy vs #phi " + plotterTag +";GEN mu #phi [rad]; A.U.").c_str(), 10, -pi, pi);
 
-  m_histoMap["hHLTvsPt"] = new TH1F(("hHLTvsPt"+plotterTag).c_str(), ("HLT occupancy vs p_{T} " + plotterTag +"; p_{T} GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
-  m_histoMap["hGENvsPt"] = new TH1F(("hGENvsPt"+plotterTag).c_str(), ("GEN occupancy vs p_{T} " + plotterTag +"; p_{T} GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
+  m_histoMap["hHLTvsPt"] = new TH1F(("hHLTvsPt"+plotterTag).c_str(), ("HLT occupancy vs p_{T} " + plotterTag +";HLT mu p_{T} [GeV];A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
+  m_histoMap["hGENvsPt"] = new TH1F(("hGENvsPt"+plotterTag).c_str(), ("GEN occupancy vs p_{T} " + plotterTag +";GEN mu p_{T} [GeV]; A.U.").c_str(), nPtBins, minPtBin, maxPtBin);
 
-  m_histoMap["hHLTvsPtThr"] = new TH1F(("hHLTvsPtThr"+plotterTag).c_str(), ("HLT occupancy vs p_{T} cut " + plotterTag +"; p_{T} cut GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin );
-  m_histoMap["hGENvsPtThr"] = new TH1F(("hGENvsPtThr"+plotterTag).c_str(), ("GEN occupancy vs p_{T} cut " + plotterTag +"; p_{T} cut GeV; A.U.").c_str(), nPtBins, minPtBin, maxPtBin );
+  m_histoMap["hHLTvsPtThr"] = new TH1F(("hHLTvsPtThr"+plotterTag).c_str(), ("HLT occupancy vs p_{T} cut " + plotterTag +";HLT mu p_{T} cut [GeV]; A.U.").c_str(), nPtBins, minPtBin, maxPtBin );
+  m_histoMap["hGENvsPtThr"] = new TH1F(("hGENvsPtThr"+plotterTag).c_str(), ("GEN occupancy vs p_{T} cut " + plotterTag +";GEN mu p_{T} cut [GeV]; A.U.").c_str(), nPtBins, minPtBin, maxPtBin );
 
-  m_histoMap["hHLTvsInter"] = new TH1F(("hHLTvsInter"+plotterTag).c_str(), ("HLT occupancy vs PU" + plotterTag +"; PU; A.U.").c_str(), 35, 0., 70.);
-  m_histoMap["hGENvsInter"] = new TH1F(("hGENvsInter"+plotterTag).c_str(), ("GEN occupancy vs PU" + plotterTag +"; PU; A.U.").c_str(), 35, 0., 70.);
+  m_histoMap["hHLTvsInter"] = new TH1F(("hHLTvsInter"+plotterTag).c_str(), ("HLT occupancy vs PU" + plotterTag +"; N GEN vtx; A.U.").c_str(), 35, 0., 70.);
+  m_histoMap["hGENvsInter"] = new TH1F(("hGENvsInter"+plotterTag).c_str(), ("GEN occupancy vs PU" + plotterTag +"; N GEN vtx; A.U.").c_str(), 35, 0., 70.);
 
 
 }
