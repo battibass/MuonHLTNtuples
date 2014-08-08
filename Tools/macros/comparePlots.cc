@@ -195,13 +195,15 @@ void plot( std::vector<TH1*> plots,
 	  eff->Draw("colz");
 	}
       
-      std::string path = baseDir + "/" + outputDir;
-      system( (std::string("mkdir -p ") + path).c_str() );
+      std::string pathC = baseDir + "/C/" + outputDir;
+      system( (std::string("mkdir -p ") + pathC).c_str() );
+
+      std::string pathGif = baseDir + "/gif/" + outputDir;
+      system( (std::string("mkdir -p ") + pathGif).c_str() );
       
       c->Update();
-      std::string printname = path + "/" + plots.at(0)->GetName();
-      c->Print ( ( printname + ".gif" ).c_str() ); 
-      c->Print ( ( printname + ".C" ).c_str() ); 
+      c->Print ( ( pathGif + "/" + plots.at(0)->GetName()+ ".gif" ).c_str() ); 
+      c->Print ( ( pathC + "/" + plots.at(0)->GetName() + ".C" ).c_str() ); 
     }
   
 }
