@@ -45,7 +45,7 @@ def eosCopy ( inputFile, outputPath ) :
 
     #print outputPath
     #print '/afs/cern.ch/project/eos/installation/0.3.4/bin/eos.select cp ' + inputFile + " " + outputPath
-    call([eosCmd + ' cp ' + inputFile + " " + outputPath], shell=True)
+    return call([eosCmd + ' cp ' + inputFile + " " + outputPath], shell=True)
 
 
 def mkDir( path ) :
@@ -78,8 +78,10 @@ def copyAndMerge ( inputBasePath, outputBasePath, nFilesToCopy, fileNameTag ) :
         
         for file in files:
             inputPath = (dir + file).replace("//","/")
-            eosCopy( inputPath, outputPath)
-            filesToMerge.append(outputPath + "/" + file)
+            if not eosCopy( inputPath, outputPath) :
+                filesToMerge.append(outputPath + "/" + file)
+            else :
+                print "[getAndMergeRootFiles.py] WARNING : Failed to copy :", (outputPath + "/" + file)
 
         mergeFiles(outputBaseDir, mergedFileTag, filesToMerge)
         
