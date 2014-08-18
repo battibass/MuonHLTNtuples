@@ -78,9 +78,6 @@ void getPlotList( const std::string & fileName,
 void getRange( TH1* plot, float & minY, float & maxY )
 {
 
-  minY = 0.;
-  maxY = 0.;
-
   int nBins = plot->GetNbinsX();
   
   for ( int iBin=0; iBin<=nBins; ++iBin )
@@ -131,17 +128,21 @@ void plot( std::vector<TH1*> plots,
 	      pRatio->SetGrid();
 	    }
 	  
+	  float minY = 1E9;
+	  float maxY = 0;
+
+	  for (size_t iPlot=0; iPlot<plots.size(); ++iPlot) 
+	    {
+	      getRange( plots.at(iPlot), minY, maxY );
+	    }
+
 	  for (size_t iPlot=0; iPlot<plots.size(); ++iPlot) 
 	    {
 	      pPlot->cd();
 	      plots.at(iPlot)->SetLineColor( colorMap[iPlot] );
 	      plots.at(iPlot)->SetFillColor( colorMap[iPlot] );
 	      plots.at(iPlot)->SetMarkerColor( colorMap[iPlot] );
-	      plots.at(iPlot)->SetMarkerStyle( 21 + iPlot );
-	      
-	      float minY = 0;
-	      float maxY = 0;
-	      getRange( plots.at(iPlot), minY, maxY );
+	      plots.at(iPlot)->SetMarkerStyle( 21 + iPlot );	      
  
 	      plots.at(iPlot)->GetYaxis()->SetRangeUser( minY, maxY );
 	      plots.at(iPlot)->Draw( iPlot ? "samePE1" : "PE1" );
