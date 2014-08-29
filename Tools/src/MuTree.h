@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-namespace ciemat {
+namespace muon_hlt {
 
 
   class GenInfo {
@@ -58,8 +58,8 @@ namespace ciemat {
     Float_t neutralHadronIso;
 
 
-    Float_t iso_pflow; // PF isolation in dR<0.4 cone dBeta
-    Float_t iso03_pflow; // PF isolation in dR<0.3 cone dBeta
+    Float_t isoPflow04; // PF isolation in dR<0.4 cone dBeta
+    Float_t isoPflow03; // PF isolation in dR<0.3 cone dBeta
 
     Float_t dxy;       // signed transverse distance to primary vertex [cm]
     Float_t dz;        // signed longitudinal distance to primary vertex at min. transv. distance [cm]
@@ -71,7 +71,8 @@ namespace ciemat {
     Muon(){};
     virtual ~Muon(){};
 
-    bool isTightIso() const { return fabs(eta)<2.1 && isTight && fabs(iso_pflow) < 0.125; };
+    bool isTightIso() const { return fabs(eta)<2.1 && isTight && fabs(isoPflow04) < 0.125; };
+    bool isLooseIso() const { return fabs(eta)<2.1 && isLoose && fabs(isoPflow04) < 0.2;   };
 
     ClassDef(Muon,1)
   };
@@ -94,7 +95,7 @@ namespace ciemat {
   class HLT {
   public:
     std::vector<std::string> triggers; // vector of strings with HLT paths
-    std::vector<ciemat::HLTObject>   objects;  // vector of hlt objects assing filters
+    std::vector<muon_hlt::HLTObject>   objects;  // vector of hlt objects assing filters
 
     HLT(){};
     virtual ~HLT(){};
@@ -123,14 +124,14 @@ namespace ciemat {
     Int_t luminosityBlockNumber; // luminosity block number
     Int_t eventNumber;           // event number
 
-    Int_t nvvertex;                  // number of valid reconstructed primary vertices 
+    Int_t nVtx;                      // number of valid reconstructed primary vertices 
     Float_t primaryVertex[3];        // 3d coordinates of PV [cm]
     Float_t cov_primaryVertex[3][3]; // 3x3 covariance matrix of PV estimation [cm*cm]
 
-    std::vector <ciemat::GenInfo> genInfos;        // venctor of genInfos; size=0 in data
-    std::vector<ciemat::GenParticle> genParticles; // venctor of genParticles size=0 in data
-    std::vector<ciemat::Muon> muons; // vector of muons
-    ciemat::HLT hlt;                 // HLT objects
+    std::vector <muon_hlt::GenInfo> genInfos;        // venctor of genInfos; size=0 in data
+    std::vector<muon_hlt::GenParticle> genParticles; // venctor of genParticles size=0 in data
+    std::vector<muon_hlt::Muon> muons; // vector of muons
+    muon_hlt::HLT hlt;                 // HLT objects
 
     Event(){};
     virtual ~Event(){};
