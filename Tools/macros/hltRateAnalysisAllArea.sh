@@ -1,6 +1,6 @@
 #! /bin/bash
 
-VERSION="v10"
+VERSION="v11"
 
 # WToMuNu
 ./hltRateAnalysis /data1/battilan/MuonHLT/RobertoRateChecks/MuonHltTree_${VERSION}_53X_HLT701_8TeV_25PU_25ns_WToMuNu.root      -1000 

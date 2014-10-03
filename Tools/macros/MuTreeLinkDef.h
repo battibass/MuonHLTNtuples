@@ -4,14 +4,14 @@
 #pragma link off all classes;
 #pragma link off all functions;
 
-#pragma link C++ class ciemat::Event+;
-#pragma link C++ class ciemat::GenInfo+;
-#pragma link C++ class ciemat::GenParticle+;
-#pragma link C++ class ciemat::Muon+;
-#pragma link C++ class ciemat::HLT+;
-#pragma link C++ class ciemat::HLTObject+;
-#pragma link C++ class std::vector<ciemat::GenInfo>+;
-#pragma link C++ class std::vector<ciemat::GenParticle>+;
-#pragma link C++ class std::vector<ciemat::Muon>+;
-#pragma link C++ class std::vector<ciemat::HLTObject>+;
+#pragma link C++ class muon_hlt::Event+;
+#pragma link C++ class muon_hlt::GenInfo+;
+#pragma link C++ class muon_hlt::GenParticle+;
+#pragma link C++ class muon_hlt::Muon+;
+#pragma link C++ class muon_hlt::HLT+;
+#pragma link C++ class muon_hlt::HLTObject+;
+#pragma link C++ class std::vector<muon_hlt::GenInfo>+;
+#pragma link C++ class std::vector<muon_hlt::GenParticle>+;
+#pragma link C++ class std::vector<muon_hlt::Muon>+;
+#pragma link C++ class std::vector<muon_hlt::HLTObject>+;
 #endif
