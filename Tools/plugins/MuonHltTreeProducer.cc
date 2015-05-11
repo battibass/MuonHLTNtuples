@@ -411,6 +411,9 @@ void MuonHltTreeProducer::fillMuons(const edm::Handle<reco::MuonCollection> & mu
       const reco::Vertex & vertex = vertexes->at(0); // CB for now vertex is always valid, but add a protection	    
 
       bool isGlobal      = mu.isGlobalMuon();
+      bool isTracker     = mu.isTrackerMuon();
+      bool isStandAlone  = mu.isStandAloneMuon();
+
       bool hasInnerTrack = !mu.innerTrack().isNull();
 
       double dxy = isGlobal ? mu.globalTrack()->dxy(vertex.position()) :
@@ -436,7 +439,14 @@ void MuonHltTreeProducer::fillMuons(const edm::Handle<reco::MuonCollection> & mu
       ntupleMu.neutralHadronIso = iso04.sumNeutralHadronEt;
       ntupleMu.photonIso        = iso04.sumPhotonEt;
 
-      ntupleMu.isGlobal = isGlobal ? 1: 0;	
+      ntupleMu.isGlobal     = isGlobal ? 1: 0;	
+      ntupleMu.isTracker    = isTracker ? 1: 0;	
+      ntupleMu.isStandAlone = isStandAlone ? 1: 0;
+
+      ntupleMu.nHitsGlobal     = isGlobal     ? mu.globalTrack()->numberOfValidHits() : -999;	
+      ntupleMu.nHitsTracker    = isTracker    ? mu.innerTrack()->numberOfValidHits()  : -999;	
+      ntupleMu.nHitsStandAlone = isStandAlone ? mu.outerTrack()->numberOfValidHits()  : -999;
+	
       ntupleMu.isLoose  = muon::isLooseMuon(mu)         ? 1 : 0;	  
       ntupleMu.isSoft   = muon::isSoftMuon(mu,vertex)   ? 1 : 0;	  
       ntupleMu.isTight  = muon::isTightMuon(mu,vertex)  ? 1 : 0;	  

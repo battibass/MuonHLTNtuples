@@ -48,6 +48,9 @@ namespace muon_hlt {
     Int_t   charge;    // charge
 
     Int_t   isGlobal;
+    Int_t   isTracker;
+    Int_t   isStandAlone;
+
     Int_t   isSoft;
     Int_t   isLoose;
     Int_t   isTight;
@@ -67,6 +70,11 @@ namespace muon_hlt {
     Float_t edz;       // uncertainty on dz [cm]
     Float_t dxybs;     // signed transverse distance to beamspot [cm]
     Float_t dzbs;      // signed longitudinal distance to beamspot [cm]
+
+    Int_t   nHitsGlobal;
+    Int_t   nHitsTracker;
+    Int_t   nHitsStandAlone;
+
 
     Muon(){};
     virtual ~Muon(){};
