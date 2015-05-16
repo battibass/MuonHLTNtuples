@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ROOTLIBS="`$ROOTSYS/bin/root-config --glibs` -lMathCore -lMinuit -L/usr/local/lib64 -lLHAPDF"
+ROOTINCDIR="`$ROOTSYS/bin/root-config --incdir` -I/usr/local/include"
+
+rootcint -f MuTreeDict.C -c MuTree.h MuTreeLinkDef.h
+
+g++ -shared -fPIC -I${ROOTINCDIR} MuTreeDict.C ${ROOTLIBS} -lX11 -o libMuTree.so
+
+rm -f MuTreeDict.C MuTreeDict.h

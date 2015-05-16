@@ -1,0 +1,20 @@
+#!/bin/sh
+
+file=$0
+fileC=${file}.C
+fileEXE=${file}.exe
+
+ROOTLIBS="-L/usr/lib64 `$ROOTSYS/bin/root-config --glibs` -lMathCore -lMinuit"
+ROOTINCDIR=`$ROOTSYS/bin/root-config --incdir`
+
+rootcint -f MuTreeDict.C -c MuTree.h MuTreeLinkDef.h
+
+g++ -I${ROOTINCDIR} ${fileC} MuTreeDict.C ${ROOTLIBS} -lX11 -o ${fileEXE}
+
+echo "$1"
+
+echo "Running just sample $1"
+${fileEXE} $@
+
+rm -f MuTreeDict.C MuTreeDict.h
+rm -f ${fileEXE}
