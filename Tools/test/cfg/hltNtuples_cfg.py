@@ -5,14 +5,13 @@ process = cms.Process("NTUPLES")
 process.source = cms.Source("PoolSource",
                             
         fileNames = cms.untracked.vstring(
-             # Z 710pre9 RelVal
-             '/store/user/battilan/data/62X_RAW_RECO.root'
+             ' /store/relval/CMSSW_7_5_0_pre5/RelValSingleMuPt100_UP15/GEN-SIM-RECO/MCRUN2_75_V5-v1/00000/9C3F56B9-B80B-E511-A5FC-0025905A605E.root'
              ),
         secondaryFileNames = cms.untracked.vstring()
 )
 
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = "POSTLS170_V3::All"
+process.GlobalTag.globaltag = "MCRUN2_75_V5"
 
 process.load("Configuration.StandardSequences.MagneticField_38T_cff")
 process.load("Configuration.Geometry.GeometryIdeal_cff")
@@ -23,4 +22,4 @@ from MuonHLTNtuples.Tools.MuonHltNtuples_cff import appendMuonHltNtuple
 
 appendMuonHltNtuple(process,True,"test.root")
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))

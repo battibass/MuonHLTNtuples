@@ -7,9 +7,9 @@ fileEXE=${file}.exe
 ROOTLIBS="-L/usr/lib64 `$ROOTSYS/bin/root-config --glibs` -lMathCore -lMinuit"
 ROOTINCDIR=`$ROOTSYS/bin/root-config --incdir`
 
-rootcint -f MuTreeDict.C -c MuTree.h MuTreeLinkDef.h
+rootcling -f MuTreeDict.C -c MuTree.h MuTreeLinkDef.h
 
-g++ -I${ROOTINCDIR} ${fileC} MuTreeDict.C ${ROOTLIBS} -lX11 -o ${fileEXE}
+g++ -std=gnu++11 -I${ROOTINCDIR} ${fileC} MuTreeDict.C ${ROOTLIBS} -lX11 -o ${fileEXE}
 
 echo "$1"
 
